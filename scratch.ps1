@@ -5,7 +5,7 @@
 Select -Property DeviceID,Size,freespace |
 sort -Property freespace -Descending
 #>
-[CmdletBinding()]
+<# [CmdletBinding()]
 param()
 $data = import-csv c:\tmp\data.csv
 Write-Debug "Imported CSV data"
@@ -29,3 +29,4 @@ $totalbought = 0
 Write-Debug "OUTPUT: $totalqty,$totalbought,$totalsold,$($totalbought-$totalsold)"
 "totalqty,totalbought,totalsold,totalamt" | out-file c:\tmp\summary.csv
 "$totalqty,$totalbought,$totalsold,$($totalbought-$totalsold)" |out-file c:\tmp\summary.csv -append
+ #>
