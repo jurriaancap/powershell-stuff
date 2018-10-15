@@ -41,8 +41,8 @@ Export-Csv -path "E:\EventLogs\AccountAudit.csv" -Append -Encoding ASCII
 #credentials in file storen
 $Credential = Get-Credential
 #To store the credentials into a .cred file:
-$Credential | Export-CliXml -Path "${env:\userprofile}\jurriaan.Cred"
+$Credential | Export-CliXml -Path "${env:\userprofile}\example.Cred"
 #And to load the credentials from the file and back into a variable:
-$Credential = Import-CliXml -Path "${env:\userprofile}\jurriaan.Cred"
+$Credential = Import-CliXml -Path "${env:\userprofile}\example.Cred"
 # example : Invoke-Command -Computername 'Server01' -Credential $Credential {whoami}
 
