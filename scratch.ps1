@@ -30,3 +30,19 @@ Write-Debug "OUTPUT: $totalqty,$totalbought,$totalsold,$($totalbought-$totalsold
 "totalqty,totalbought,totalsold,totalamt" | out-file c:\tmp\summary.csv
 "$totalqty,$totalbought,$totalsold,$($totalbought-$totalsold)" |out-file c:\tmp\summary.csv -append
  #>
+
+ #read event log for when a group is created 
+$event  = get-eventlog security -ComputerName dcnl0101.intra.local | Where-object {($_.EventID -eq  4727) -or ($_.EventID -eq 4754) -or ($_.EventID -eq 4731)}
+
+$event | select MachineName,EventID,TimeGenerated,Message | 
+Export-Csv -path "E:\EventLogs\AccountAudit.csv" -Append -Encoding ASCII 
+
+
+#credentials in file storen
+$Credential = Get-Credential
+#To store the credentials into a .cred file:
+$Credential | Export-CliXml -Path "${env:\userprofile}\jurriaan.Cred"
+#And to load the credentials from the file and back into a variable:
+$Credential = Import-CliXml -Path "${env:\userprofile}\jurriaan.Cred"
+# example : Invoke-Command -Computername 'Server01' -Credential $Credential {whoami}
+
