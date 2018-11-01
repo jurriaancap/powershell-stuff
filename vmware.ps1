@@ -7,3 +7,4 @@ Connect-VIServer vcenter.intra.local -Credential $Credential
 
 Get-vm 
 
+
